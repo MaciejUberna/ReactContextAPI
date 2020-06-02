@@ -1,3 +1,6 @@
+//Please note: every component that uses context API will rerender itself 
+//So this is not optimized for frequent data changes.
+
 import React, { useState } from 'react';
 
 export const ProductsContext = React.createContext({products: 
