@@ -6,7 +6,7 @@ let globalState = {};
 let listeners = [];
 let actions = {};
 
-export const useStore = () => {
+export const useStore = (shouldListen = true) => {
     const setState = useState(globalState)[1];
 
     const dispatch = (actionIndentyfier,payload) => {
@@ -21,13 +21,15 @@ export const useStore = () => {
     useEffect(() => {
         //listeners all just setState calls that will rerender when any component will use them.
         //We redister one listener per component
-        listeners.push(setState);
+        if(shouldListen)
+            listeners.push(setState);
         //return is a clean up function that unmounts listeners when it unmounts
         //We unregister that listener when component is destroied 
         return () => {
-            return listeners => listeners.filter(li => li !== setState);
+            if(shouldListen)
+                return listeners => listeners.filter(li => li !== setState);
         }
-    },[setState]);
+    },[setState,shouldListen]);
 
     return [globalState, dispatch];
 };

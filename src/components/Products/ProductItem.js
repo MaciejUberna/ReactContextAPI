@@ -4,10 +4,15 @@ import Card from '../UI/Card';
 import {useStore} from '../../hooks-store/store';
 import './ProductItem.css';
 
-const ProductItem = props => {
+const ProductItem = React.memo(props => {
+
+  console.log('RENDERING');
 
   //Here we dispatch action for that slice
-  const dispatch = useStore()[1];
+  //This component should not register the listener im my global 
+  //Listeners array, and therefore should not rebuild when our global -
+  // - store changes
+  const dispatch = useStore(false)[1];
 
   const toggleFavHandler = () => {
     // dispatch(toggleFav(props.id));
@@ -29,6 +34,6 @@ const ProductItem = props => {
       </div>
     </Card>
   );
-};
+});
 
 export default ProductItem;
