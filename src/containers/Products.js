@@ -1,11 +1,11 @@
 import React, {useContext} from 'react';
 
 import ProductItem from '../components/Products/ProductItem';
-import {ProductContext} from '../context/products-context';
+import {ProductsContext} from '../context/products-context';
 import './Products.css';
 
 const Products = props => {
-  const productList = useContext(ProductContext).products;
+  const productList = useContext(ProductsContext).products;
   return (
     <ul className="products-list">
       {productList.map(prod => (
