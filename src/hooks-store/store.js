@@ -6,8 +6,18 @@ let globalState = {};
 let listeners = [];
 let actions = {};
 
-const useStore = () => {
+export const useStore = () => {
     const setState = useState(globalState)[1];
+
+    const dispatch = actionIndentyfier => {
+        const newState = actions[actionIndentyfier](globalState);
+        globalState = {...globalState, ...newState};
+
+        for (const listener of listeners) {
+            listener(globalState);
+        };
+    };
+
     useEffect(() => {
         listeners.push(setState);
         //return is a clean up function that unmounts listeners when it unmounts
@@ -15,4 +25,13 @@ const useStore = () => {
             return listeners => listeners.filter(li => li !== setState);
         }
     },[setState]);
+
+    return [globalState, dispatch];
+};
+
+export const initStore = (userActions, initialState) => {
+    if(initialState) {
+        globalState = {...globalState, ...initialState};
+    };
+    actions = {...actions, ...userActions};
 };
