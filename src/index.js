@@ -1,3 +1,7 @@
+//More on React Hooks: https://reactjs.org/docs/hooks-intro.html
+
+//npm Custom Store Hook package: https://www.npmjs.com/package/use-global-hook
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
