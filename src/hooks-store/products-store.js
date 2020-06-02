@@ -12,7 +12,7 @@ const configureStore = () => {
                 ...curState.products[prodIndex],
                 isFavorite: newFavStatus
             };
-            return { producs: updatedProducts};
+            return { products: updatedProducts};
         }
     }
     initStore(actions,{products:
