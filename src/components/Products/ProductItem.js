@@ -6,6 +6,7 @@ import './ProductItem.css';
 
 const ProductItem = props => {
 
+  //Here we dispatch action for that slice
   const dispatch = useStore()[1];
 
   const toggleFavHandler = () => {

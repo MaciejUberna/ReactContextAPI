@@ -5,6 +5,7 @@ import {useStore} from '../hooks-store/store';
 import './Products.css';
 
 const Products = props => {
+  //Here we read state for that slice (products).
   const state = useStore()[0];
   return (
     <ul className="products-list">
